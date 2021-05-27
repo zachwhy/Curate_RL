@@ -1,4 +1,4 @@
-tensorflow==2.4.1
+tensorflow-cpu==2.4.1
 tf_agents==0.7.1
 Flask_RESTful==0.3.9
 Flask==2.0.1
