@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, Response, render_template
 from flask_restful import Resource, Api
 import pymongo
 
@@ -30,7 +30,7 @@ container = []
 class Predict(Resource):
     def get(self):
 
-        return "Connected to App"
+        return render_template('index.html')
 
     def post(self):
 
