@@ -10,10 +10,13 @@ import os
 import tf_agents
 
 import numpy as np
+import ssl
 
 try:
-    mongo = pymongo.MongoClient(host = "localhost", port = 27017, serverSelectionTimeoutMS = 1000)
-    db = mongo.curate
+    mongo = pymongo.MongoClient("mongodb+srv://user:qB0xFmph33okh2D7@Curate.9jbnx.mongodb.net/Curate?retryWrites=true&w=majority",
+        serverSelectionTimeoutMS = 1000,  ssl_cert_reqs = ssl.CERT_NONE)
+    db = mongo.Curate
+    db = db.curate
     monngo.server_info()
 except:
     print("Cannot connect to db")
@@ -31,6 +34,11 @@ class Predict(Resource):
 
     def post(self):
 
+        mongo = pymongo.MongoClient("mongodb+srv://user:qB0xFmph33okh2D7@Curate.9jbnx.mongodb.net/Curate?retryWrites=true&w=majority",
+            serverSelectionTimeoutMS = 1000,  ssl_cert_reqs = ssl.CERT_NONE)
+        db = mongo.Curate
+        db = db.curate
+
         policy_dir = "C:/YNC/YNC/SIRP/Model/Perceptual Learning Model"
         model = tf.compat.v2.saved_model.load(policy_dir)
 
@@ -40,7 +48,7 @@ class Predict(Resource):
         id = data["participantId"]
 
 
-        participant_folder = db["participant"]
+        participant_folder = db
 
         """for logging of data"""
 
