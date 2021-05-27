@@ -39,7 +39,7 @@ class Predict(Resource):
         db = mongo.Curate
         db = db.curate
 
-        policy_dir = "C:/YNC/YNC/SIRP/Model/Perceptual Learning Model"
+        policy_dir = "Perceptual Learning Model"
         model = tf.compat.v2.saved_model.load(policy_dir)
 
 
