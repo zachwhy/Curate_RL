@@ -34,7 +34,8 @@ class Predict(Resource):
 
     def post(self):
 
-        policy_dir = "/New Perceptual Learning Model_CatDQN_Model7_3_good_random"
+        policy_dir = "Curate_RL/New Perceptual Learning Model_CatDQN_Model7_3_good_random/"
+
         model = tf.compat.v2.saved_model.load(policy_dir)
 
 
