@@ -81,14 +81,12 @@ class Predict(Resource):
             response_container.append(i["correct"])
 
         acc = sum(response_container)/len(response_container)
-        acc2 = round(acc,2)
+        acc2 = round(acc,3)
 
         # acc_container.append(acc)
 
-        if acc2 == 0.8:
-            reward = 100
-        else:
-            reward = -abs((0.8 - acc)*100)
+        
+        reward = round(-abs((0.8 - acc)*100),3)
 
         # reward_container.append(reward)
 
