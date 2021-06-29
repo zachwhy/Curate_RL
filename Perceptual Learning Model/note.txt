@@ -1,1 +1,3 @@
-CAT DQN Lookup Fixed Rand Act 0.8
+CAT DQN Lookup Fixed Rand Act 0.9
+
+new reward
