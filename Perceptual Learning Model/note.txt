@@ -1,1 +1,1 @@
-CAT DQN Lookup Fixed Rand Act
+CAT DQN Lookup Fixed Rand Act 0.8
