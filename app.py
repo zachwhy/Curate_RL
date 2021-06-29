@@ -107,7 +107,7 @@ class Predict(Resource):
 
 
         timestep = tf_agents.trajectories.time_step.transition(
-            reward= 0,
+            reward= tf.convert_to_tensor(np.array([0]),np.float32),
             observation=observation,
             discount = discount
             )
