@@ -34,12 +34,7 @@ class Predict(Resource):
 
     def post(self):
 
-        mongo = pymongo.MongoClient("mongodb+srv://user:qB0xFmph33okh2D7@Curate.9jbnx.mongodb.net/Curate?retryWrites=true&w=majority",
-            serverSelectionTimeoutMS = 1000)
-        db = mongo.Curate
-        db = db.curate
-
-        policy_dir = "Perceptual Learning Model"
+        policy_dir = "/Perceptual Learning Model"
         model = tf.compat.v2.saved_model.load(policy_dir)
 
 
@@ -48,7 +43,7 @@ class Predict(Resource):
         id = data["participantId"]
 
 
-        participant_folder = db
+        participant_folder = db["participant"]
 
         """for logging of data"""
 
@@ -81,12 +76,22 @@ class Predict(Resource):
             response_container.append(i["correct"])
 
         acc = sum(response_container)/len(response_container)
-        acc2 = round(acc,3)
+
+
+        # acc2 = round(acc,2)
 
         # acc_container.append(acc)
 
-        
+        trial = len(response_container)
+
         reward = round(-abs((0.8 - acc)*100),3)
+        reward = reward/(99-trial)
+
+
+        # if acc2 == 0.8:
+        #     reward = 100
+        # else:
+        #     reward = -abs((0.8 - acc)*100)
 
         # reward_container.append(reward)
 
@@ -99,15 +104,16 @@ class Predict(Resource):
         noise = data["noise"]
 
 
-        observation = tf.convert_to_tensor(np.array([rotation,noise,acc2]),np.float32)
+        observation = tf.convert_to_tensor(np.array([rotation,noise,acc]),np.float32)
         observation = tf.reshape(observation, [1,3])
 
-        reward2 = tf.convert_to_tensor(np.array([reward]),np.float32)
         discount = tf.convert_to_tensor(np.array([1]),np.float32)
 
 
+        reward2 = tf.convert_to_tensor(np.array([reward]),np.float32)
+
         timestep = tf_agents.trajectories.time_step.transition(
-            reward= tf.convert_to_tensor(np.array([0]),np.float32),
+            reward= reward,
             observation=observation,
             discount = discount
             )
@@ -140,7 +146,6 @@ class Predict(Resource):
 
 
         return action
-
         # Response(response = json.dumps({"data" : f"{action_container}"}))
 
 
