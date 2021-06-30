@@ -85,10 +85,10 @@ class Predict(Resource):
 
         # acc_container.append(acc)
 
-        if acc2 == 0.8:
-            reward = 100
-        else:
-            reward = round(-abs((0.8 - acc)*100),3)
+        trial = len(response_container)
+
+        reward = round(-abs((0.8 - acc)*100),3)
+        reward = reward/(99-trial)
 
         # reward_container.append(reward)
 
