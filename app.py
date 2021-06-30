@@ -105,10 +105,12 @@ class Predict(Resource):
         observation = tf.reshape(observation, [1,3])
 
         reward2 = tf.convert_to_tensor(np.array([reward]),np.float32)
+        discount = tf.convert_to_tensor(np.array([0.9]),np.float32)
 
         timestep = tf_agents.trajectories.time_step.transition(
             reward= reward2,
-            observation=observation
+            observation=observation,
+            discount = discount
             )
 
         act= model.action(timestep).action
