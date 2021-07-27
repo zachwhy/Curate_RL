@@ -89,6 +89,8 @@ class Predict(Resource):
 
         reward = round(-abs((0.8 - acc)*100),3)
         reward = reward/(99-trial)
+        
+        response = response_container[-1]
 
         # reward_container.append(reward)
 
@@ -101,8 +103,8 @@ class Predict(Resource):
         noise = data["noise"]
 
 
-        observation = tf.convert_to_tensor(np.array([rotation,noise,acc2]),np.float32)
-        observation = tf.reshape(observation, [1,3])
+        observation = tf.convert_to_tensor(np.array([rotation,noise,acc2,response]),np.float32)
+        observation = tf.reshape(observation, [1,4])
 
         reward2 = tf.convert_to_tensor(np.array([reward]),np.float32)
         discount = tf.convert_to_tensor(np.array([0.9]),np.float32)
