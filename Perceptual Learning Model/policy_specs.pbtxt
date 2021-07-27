@@ -22,7 +22,7 @@ dict_value {
               name: "observation"
               shape {
                 dim {
-                  size: 3
+                  size: 4
                 }
               }
               dtype: DT_FLOAT
@@ -30,19 +30,19 @@ dict_value {
                 dtype: DT_FLOAT
                 tensor_shape {
                   dim {
-                    size: 3
+                    size: 4
                   }
                 }
-                tensor_content: "\000\000\200?\000\000\200?\000\000\000\000"
+                tensor_content: "\000\000\200?\000\000\200?\000\000\000\000\000\000\000\000"
               }
               maximum {
                 dtype: DT_FLOAT
                 tensor_shape {
                   dim {
-                    size: 3
+                    size: 4
                   }
                 }
-                tensor_content: "\000\000\340@\000\000\340@\000\000\200?"
+                tensor_content: "\000\000\340@\000\000\340@\000\000\200?\000\000\200?"
               }
             }
           }
