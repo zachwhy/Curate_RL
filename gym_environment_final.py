@@ -501,7 +501,7 @@ agent.policy
 
 
 
-policy_dir = "C:/YNC/YNC/SIRP/Model/New Perceptual Learning Model Lookup_CatDQN2_newreward2_fixed_perf_4Obs_80k"
+policy_dir = ""
 
 tf_policy_saver = policy_saver.PolicySaver(agent.policy)
 
