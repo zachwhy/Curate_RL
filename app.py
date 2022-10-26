@@ -34,7 +34,7 @@ class Predict(Resource):
 
     def post(self):
 
-        mongo = pymongo.MongoClient("mongodb+srv://user:qB0xFmph33okh2D7@Curate.9jbnx.mongodb.net/Curate?retryWrites=true&w=majority",
+        mongo = pymongo.MongoClient("mongodb+srv://[id]:[password]@Curate.9jbnx.mongodb.net/Curate?retryWrites=true&w=majority",
             serverSelectionTimeoutMS = 1000)
         db = mongo.Curate
         db = db.curate
